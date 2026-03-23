@@ -1,6 +1,6 @@
 #------Define the AWS provider------
 provider "aws" {
-  region = "us-east-1"
+  region = "af-south-1"
 }
 
 #------Create a security group for the web server------
