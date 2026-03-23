@@ -6,7 +6,7 @@ provider "aws" {
 #------EC2 Instance with simple web server------
 resource "aws_instance" "web_server" {
   ami                    = "ami-0c94855ba95c71c99"
-    instance_type          = "t2.micro"
+ instance_type          = "t2.micro"
   user_data = <<-EOF
               #!/bin/bash
               echo "Hello, World" > index.html
