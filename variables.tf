@@ -3,7 +3,27 @@ variable "server_port" {
   type        = number
   default     = 8080    
 }
-output "public_ip" {
-  value = aws_instance.web_server.public_ip
-  description = "Our web server public IP address:"
+
+variable "instance_type" {
+  description = "EC2 instance type"
+  type = string
+  default = "t3.micro"
+}
+
+variable "ami" {
+  description = "EC2 AMI ID"
+  type = string
+  default = "ami-0b0b78dcacbab728f"
+}
+variable "region" {
+  default = "us-east-2"
+}
+variable "aws_security_group" {
+    default = "web-server-instance-sg"
+    description = "Allow HTTP traffic"
+    type = string
+}
+variable "cid_blocks" {
+    default = ["0.0.0.0/0"]
+  
 }
