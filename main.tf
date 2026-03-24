@@ -21,12 +21,17 @@ resource "aws_instance" "web_server" {
 ami                    = "ami-02dfbd4ff395f2a1b"
  instance_type          = "t3.micro"
  vpc_security_group_ids = [aws_security_group.web_sg.id]  
-  user_data = <<-EOF
-              #!/bin/bash
-              echo "Hello, World" > index.html
-              nohup busybox httpd -f -p 8080 &
-              EOF
-  user_data_replace_on_change = true
+user_data = <<-EOF
+ #!/bin/bash
+yum update -y
+yum install -y httpd
+
+systemctl start httpd
+systemctl enable httpd
+
+echo "<h1>Welcome to my Terraform-deployed server 🚀</h1>" > /var/www/html/index.html
+EOF
+user_data_replace_on_change = true
 
   tags = {
     Name = "web-server"
